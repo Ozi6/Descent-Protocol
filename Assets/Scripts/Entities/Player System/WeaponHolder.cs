@@ -9,9 +9,14 @@ public class WeaponHolder : MonoBehaviour
 
     public void AttachWeapon(Weapon weapon)
     {
+        if(_currentWeapon != null)
+            _currentWeapon.DisableUI();
+
         _currentWeapon = weapon;
         weapon.transform.SetParent(_weaponAnchor);
         weapon.transform.localPosition = new Vector3(0, -0.15f, 0);
+
+        weapon.EnableUI();
     }
 
     public void AimAt(Vector2 direction)

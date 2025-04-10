@@ -11,17 +11,17 @@ public class Player : Entity
         base.Awake();
 
         _input = GetComponent<InputHandler>();
-        if (_input == null)
+        if(_input == null)
             _input = gameObject.AddComponent<InputHandler>();
 
         _weaponHolder = GetComponent<WeaponHolder>();
-        if (_weaponHolder == null)
+        if(_weaponHolder == null)
             _weaponHolder = gameObject.AddComponent<WeaponHolder>();
 
         _animator = GetComponent<Animator>();
 
         Weapon startingWeapon = GetComponentInChildren<Weapon>();
-        if (startingWeapon != null)
+        if(startingWeapon != null)
             _weaponHolder.AttachWeapon(startingWeapon);
 
         _input.OnSwipe += HandleSwipe;
@@ -30,7 +30,7 @@ public class Player : Entity
 
     private void Update()
     {
-        if (_animator != null)
+        if(_animator != null)
             _animator.SetFloat("Speed", _movement.IsMoving ? 1 : 0);
     }
 
@@ -41,7 +41,7 @@ public class Player : Entity
             Vector2 moveDirection = GetPrimaryDirection(direction);
             _movement.MoveInDirection(moveDirection);
 
-            if (moveDirection.x != 0)
+            if(moveDirection.x != 0)
             {
                 Vector3 scale = transform.localScale;
                 scale.x = Mathf.Abs(scale.x) * (moveDirection.x > 0 ? -1 : 1);
@@ -63,14 +63,14 @@ public class Player : Entity
 
     private Vector2 GetPrimaryDirection(Vector2 rawDirection)
     {
-        if (Mathf.Abs(rawDirection.x) > Mathf.Abs(rawDirection.y))
+        if(Mathf.Abs(rawDirection.x) > Mathf.Abs(rawDirection.y))
             return rawDirection.x > 0 ? Vector2.right : Vector2.left;
         return rawDirection.y > 0 ? Vector2.up : Vector2.down;
     }
 
     private void OnDestroy()
     {
-        if (_input != null)
+        if(_input != null)
         {
             _input.OnSwipe -= HandleSwipe;
             _input.OnTap -= HandleTap;
