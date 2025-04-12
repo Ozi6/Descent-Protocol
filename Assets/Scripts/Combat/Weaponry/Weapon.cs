@@ -8,6 +8,8 @@ public abstract class Weapon : MonoBehaviour
     protected int _currentAmmo;
     protected int _maxAmmo;
 
+    protected const float RELOAD_TIME = 1.5f;
+    protected float _reloadTime = 0f;
     protected float shootCooldown = 0.5f;
     public GameObject bulletPrefab;
     public float bulletSpeed = 10f;
@@ -38,6 +40,15 @@ public abstract class Weapon : MonoBehaviour
         {
             _weaponUI.Hide();
             UpdateUI();
+        }
+    }
+
+    public virtual void Reload()
+    {
+        if (_currentAmmo <= 0)
+        {
+            _currentAmmo = _maxAmmo;
+            _reloadTime = RELOAD_TIME;
         }
     }
 }
