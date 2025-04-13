@@ -14,6 +14,7 @@ public abstract class Weapon : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletSpeed = 10f;
     public const float shootCD = 0.5f;
+    protected bool _holdWeapon = false;
 
     public virtual void Fire(Vector2 direction)
     {

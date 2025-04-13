@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CircleBarrel : Weapon
+public class Flamethrower : Weapon
 {
     [Header("UI Settings")]
     [SerializeField] private CircularBarrelUI _uiPrefab;
@@ -10,8 +10,8 @@ public class CircleBarrel : Weapon
     void Start()
     {
         shootCooldown = 0;
-        _holdWeapon = false;
         _currentAmmo = 8;
+        _holdWeapon = false;
         _maxAmmo = 8;
         InitializeUI();
     }
@@ -27,7 +27,7 @@ public class CircleBarrel : Weapon
 
     void Update()
     {
-        if (shootCooldown > 0)
+        if(shootCooldown > 0)
             shootCooldown -= Time.deltaTime;
 
         if(_reloadTime > 0)
@@ -44,22 +44,28 @@ public class CircleBarrel : Weapon
         if(shootCooldown <= 0 && _reloadTime <= 0 && _currentAmmo >= 2)
         {
             GameObject bullet1 = Instantiate(bulletPrefab, transform.position, transform.rotation);
-            bullet1.transform.Rotate(0, 0, _bulletSpreadAngle / 2f);
+            bullet1.transform.Rotate(0, 0, Random.Range(-_bulletSpreadAngle, _bulletSpreadAngle));
             Rigidbody2D rb1 = bullet1.GetComponent<Rigidbody2D>();
             rb1.linearVelocity = bullet1.transform.right * bulletSpeed;
             bullet1.transform.Rotate(0, 0, bullet1.transform.rotation[2] - 90f);
 
             GameObject bullet2 = Instantiate(bulletPrefab, transform.position, transform.rotation);
-            bullet2.transform.Rotate(0, 0, -_bulletSpreadAngle / 2f);
+            bullet2.transform.Rotate(0, 0, Random.Range(-_bulletSpreadAngle, _bulletSpreadAngle));
             Rigidbody2D rb2 = bullet2.GetComponent<Rigidbody2D>();
             rb2.linearVelocity = bullet2.transform.right * bulletSpeed;
             bullet2.transform.Rotate(0, 0, bullet2.transform.rotation[2] - 90f);
+
+            GameObject bullet3 = Instantiate(bulletPrefab, transform.position, transform.rotation);
+            bullet3.transform.Rotate(0,0, Random.Range(-_bulletSpreadAngle, _bulletSpreadAngle));
+            Rigidbody rb3 = bullet3.GetComponent<Rigidbody>();
+            rb3.linearVelocity = bullet3.transform.right * bulletSpeed;
+            bullet3.transform.Rotate(0, 0, bullet3.transform.rotation[2] - 90f);
 
             shootCooldown = shootCD;
             _currentAmmo -= 2;
             _activeUI.UpdateAmmoDisplay(_currentAmmo, _maxAmmo);
 
-            if(_currentAmmo <= 0)
+            if (_currentAmmo <= 0)
                 Reload();
         }
     }

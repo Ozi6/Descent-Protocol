@@ -38,6 +38,10 @@ public class InputHandler : MovementComponent
                     }
                     break;
 
+                case TouchPhase.Stationary when !_isSwiping:
+
+                    break;
+
                 case TouchPhase.Ended when _isSwiping:
                     Vector2 endPos = touch.position;
                     if (Vector2.Distance(endPos, _startTouchPosition) < _swipeThreshold)
