@@ -52,4 +52,10 @@ public abstract class Weapon : MonoBehaviour
             _reloadTime = RELOAD_TIME;
         }
     }
+
+    public bool getHoldWep()
+        { return _holdWeapon; }
+
+    public void setHoldWep(bool value)
+        { _holdWeapon = value; }
 }

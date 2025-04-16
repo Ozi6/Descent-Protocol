@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class WeaponHolder : MonoBehaviour
@@ -6,6 +7,38 @@ public class WeaponHolder : MonoBehaviour
     [SerializeField] private float _aimSpeed = 10f;
 
     private Weapon _currentWeapon;
+
+    public Weapon CurrentWeapon => _currentWeapon;
+
+    private bool _isFiringContinuously;
+    private Vector2 _currentFireDirection;
+
+    public void StartFiring(Vector2 direction)
+    {
+        if(_currentWeapon is Flamethrower)
+        {
+            _isFiringContinuously = true;
+            _currentFireDirection = direction;
+            StartCoroutine(ContinuousFireRoutine());
+        }
+        else
+            Fire(direction);
+    }
+
+    public void StopFiring()
+    {
+        _isFiringContinuously = false;
+    }
+
+    private IEnumerator ContinuousFireRoutine()
+    {
+        while(_isFiringContinuously)
+        {
+            if(_currentWeapon != null)
+                _currentWeapon.Fire(_currentFireDirection);
+            yield return null;
+        }
+    }
 
     public void AttachWeapon(Weapon weapon)
     {

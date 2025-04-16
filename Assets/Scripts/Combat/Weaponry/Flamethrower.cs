@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Flamethrower : Weapon
@@ -7,13 +8,68 @@ public class Flamethrower : Weapon
     private CircularBarrelUI _activeUI;
     [SerializeField] private float _bulletSpreadAngle = 5f;
 
+    [Header("Flamethrower Settings")]
+    [SerializeField] private float _fireRate = 0.1f;
+    private bool _isFiring;
+
     void Start()
     {
         shootCooldown = 0;
         _currentAmmo = 8;
-        _holdWeapon = false;
+        _holdWeapon = true;
         _maxAmmo = 8;
         InitializeUI();
+    }
+
+    public override void Fire(Vector2 direction)
+    {
+        if(!_isFiring && _reloadTime <= 0 && _currentAmmo > 0)
+            StartCoroutine(ContinuousFire(direction));
+    }
+
+    private IEnumerator ContinuousFire(Vector2 direction)
+    {
+        _isFiring = true;
+
+        while(_isFiring && _currentAmmo > 0 && _reloadTime <= 0)
+        {
+            if(shootCooldown <= 0)
+            {
+                GameObject bullet1 = Instantiate(bulletPrefab, transform.position, transform.rotation);
+                bullet1.transform.Rotate(0, 0, Random.Range(-_bulletSpreadAngle, _bulletSpreadAngle));
+                Rigidbody2D rb1 = bullet1.GetComponent<Rigidbody2D>();
+                rb1.linearVelocity = bullet1.transform.right * bulletSpeed;
+                bullet1.transform.Rotate(0, 0, bullet1.transform.rotation.z - 90f);
+
+                GameObject bullet2 = Instantiate(bulletPrefab, transform.position, transform.rotation);
+                bullet2.transform.Rotate(0, 0, Random.Range(-_bulletSpreadAngle, _bulletSpreadAngle));
+                Rigidbody2D rb2 = bullet2.GetComponent<Rigidbody2D>();
+                rb2.linearVelocity = bullet2.transform.right * bulletSpeed;
+                bullet2.transform.Rotate(0, 0, bullet2.transform.rotation.z - 90f);
+
+
+                shootCooldown = _fireRate;
+                _currentAmmo--;
+                _activeUI.UpdateAmmoDisplay(_currentAmmo, _maxAmmo);
+
+                if(_currentAmmo <= 0)
+                {
+                    Reload();
+                    break;
+                }
+            }
+            else
+                shootCooldown -= Time.deltaTime;
+
+            yield return null;
+        }
+
+        _isFiring = false;
+    }
+
+    public void StopFiring()
+    {
+        _isFiring = false;
     }
 
     private void InitializeUI()
@@ -36,37 +92,6 @@ public class Flamethrower : Weapon
         {
             _activeUI.UpdateAmmoDisplay(_currentAmmo, _maxAmmo);
             _reloadTime = 0;
-        }
-    }
-
-    public override void Fire(Vector2 direction)
-    {
-        if(shootCooldown <= 0 && _reloadTime <= 0 && _currentAmmo >= 2)
-        {
-            GameObject bullet1 = Instantiate(bulletPrefab, transform.position, transform.rotation);
-            bullet1.transform.Rotate(0, 0, Random.Range(-_bulletSpreadAngle, _bulletSpreadAngle));
-            Rigidbody2D rb1 = bullet1.GetComponent<Rigidbody2D>();
-            rb1.linearVelocity = bullet1.transform.right * bulletSpeed;
-            bullet1.transform.Rotate(0, 0, bullet1.transform.rotation[2] - 90f);
-
-            GameObject bullet2 = Instantiate(bulletPrefab, transform.position, transform.rotation);
-            bullet2.transform.Rotate(0, 0, Random.Range(-_bulletSpreadAngle, _bulletSpreadAngle));
-            Rigidbody2D rb2 = bullet2.GetComponent<Rigidbody2D>();
-            rb2.linearVelocity = bullet2.transform.right * bulletSpeed;
-            bullet2.transform.Rotate(0, 0, bullet2.transform.rotation[2] - 90f);
-
-            GameObject bullet3 = Instantiate(bulletPrefab, transform.position, transform.rotation);
-            bullet3.transform.Rotate(0,0, Random.Range(-_bulletSpreadAngle, _bulletSpreadAngle));
-            Rigidbody rb3 = bullet3.GetComponent<Rigidbody>();
-            rb3.linearVelocity = bullet3.transform.right * bulletSpeed;
-            bullet3.transform.Rotate(0, 0, bullet3.transform.rotation[2] - 90f);
-
-            shootCooldown = shootCD;
-            _currentAmmo -= 2;
-            _activeUI.UpdateAmmoDisplay(_currentAmmo, _maxAmmo);
-
-            if (_currentAmmo <= 0)
-                Reload();
         }
     }
 }

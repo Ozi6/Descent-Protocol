@@ -26,8 +26,41 @@ public class Player : Entity
 
         _input.OnSwipe += HandleSwipe;
         _input.OnTap += HandleTap;
+        _input.OnHoldStart += HandleHoldStart;
+        _input.OnHold += HandleHold;
+        _input.OnHoldEnd += HandleHoldEnd;
     }
 
+    private void HandleHoldStart(Vector2 screenPosition)
+    {
+        if(_weaponHolder.CurrentWeapon is Flamethrower)
+        {
+            Vector2 worldPos = Camera.main.ScreenToWorldPoint(screenPosition);
+            Vector2 aimDirection = (worldPos - (Vector2)transform.position).normalized;
+
+            transform.localScale = new Vector3(Mathf.Abs(Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg) > 90 ? 1 : -1, 1, 1);
+
+            _weaponHolder.AimAt(aimDirection);
+            _weaponHolder.StartFiring(aimDirection);
+        }
+    }
+
+    private void HandleHold(Vector2 screenPosition)
+    {
+        if(_weaponHolder.CurrentWeapon.getHoldWep())
+        {
+            Vector2 worldPos = Camera.main.ScreenToWorldPoint(screenPosition);
+            Vector2 aimDirection = (worldPos - (Vector2)transform.position).normalized;
+
+            _weaponHolder.AimAt(aimDirection);
+        }
+    }
+
+    private void HandleHoldEnd()
+    {
+        if(_weaponHolder.CurrentWeapon.getHoldWep())
+            _weaponHolder.StopFiring();
+    }
     private void Update()
     {
         if(_animator != null)
@@ -70,10 +103,13 @@ public class Player : Entity
 
     private void OnDestroy()
     {
-        if(_input != null)
+        if (_input != null)
         {
             _input.OnSwipe -= HandleSwipe;
             _input.OnTap -= HandleTap;
+            _input.OnHoldStart -= HandleHoldStart;
+            _input.OnHold -= HandleHold;
+            _input.OnHoldEnd -= HandleHoldEnd;
         }
     }
 }
