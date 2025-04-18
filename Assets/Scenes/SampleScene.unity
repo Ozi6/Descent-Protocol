@@ -950,6 +950,7 @@ MonoBehaviour:
   bulletSpeed: 15
   _uiPrefab: {fileID: -3440557687041122573, guid: 9137288b177cca64fbd090898f3e984d, type: 3}
   _bulletSpreadAngle: 10
+  _fireRate: 0.1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
