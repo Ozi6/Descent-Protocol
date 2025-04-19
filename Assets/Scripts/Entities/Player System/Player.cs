@@ -33,7 +33,7 @@ public class Player : Entity
 
     private void HandleHoldStart(Vector2 screenPosition)
     {
-        if(_weaponHolder.CurrentWeapon is Flamethrower)
+        if(_weaponHolder.CurrentWeapon.getHoldWep())
         {
             Vector2 worldPos = Camera.main.ScreenToWorldPoint(screenPosition);
             Vector2 aimDirection = (worldPos - (Vector2)transform.position).normalized;
@@ -61,6 +61,7 @@ public class Player : Entity
         if(_weaponHolder.CurrentWeapon.getHoldWep())
             _weaponHolder.StopFiring();
     }
+
     private void Update()
     {
         if(_animator != null)
@@ -73,7 +74,6 @@ public class Player : Entity
         {
             Vector2 moveDirection = GetPrimaryDirection(direction);
             _movement.MoveInDirection(moveDirection);
-
             if(moveDirection.x != 0)
             {
                 Vector3 scale = transform.localScale;
