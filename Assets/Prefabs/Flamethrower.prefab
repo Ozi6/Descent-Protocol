@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponIcon: {fileID: -2910323598088949028, guid: 61030ae221fa4b041b0b87c9abee0af4, type: 3}
-  _weaponUI: {fileID: -3440557687041122573, guid: 9137288b177cca64fbd090898f3e984d, type: 3}
+  _weaponUI: {fileID: 8907403271301695829, guid: 4ae3ffc9083a7e94eb049f37fa31a4bc, type: 3}
   bulletPrefab: {fileID: 7553235869024561790, guid: 19aeaaaaef4442f4caf0d01c46116f83, type: 3}
   bulletSpeed: 15
-  _uiPrefab: {fileID: -3440557687041122573, guid: 9137288b177cca64fbd090898f3e984d, type: 3}
+  _uiPrefab: {fileID: 8907403271301695829, guid: 4ae3ffc9083a7e94eb049f37fa31a4bc, type: 3}
   _bulletSpreadAngle: 10
   _fireRate: 0.1
 --- !u!212 &3959015543296936628

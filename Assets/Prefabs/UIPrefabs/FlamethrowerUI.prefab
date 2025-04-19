@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6418888095860986906
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27,15 +27,15 @@ RectTransform:
   m_GameObject: {fileID: 2069984877703001403}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4271371771593764511}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -204.99998, y: -537.5}
-  m_SizeDelta: {x: 40, y: 60}
+  m_AnchoredPosition: {x: -303.4184, y: -599.8165}
+  m_SizeDelta: {x: 80.1339, y: 85.4973}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3076830104161772525
 CanvasRenderer:
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 4271371771593764511}
   - component: {fileID: 7154200444833009435}
   - component: {fileID: 7697618398830770741}
-  - component: {fileID: 92073777088148843}
+  - component: {fileID: 8907403271301695829}
   m_Layer: 5
   m_Name: FlamethrowerUI
   m_TagString: Untagged
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 40
---- !u!114 &92073777088148843
+--- !u!114 &8907403271301695829
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,9 +161,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 5971080671599448895}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6de1cd61b944e94499b73681461448e3, type: 3}
+  m_Script: {fileID: 11500000, guid: bb7208b24b330b44caccc50cc412b1fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tank: {fileID: 8715522055199388394, guid: a4eb54e42d042874eb3d0bdb543c665c, type: 3}
-  _activeColor: {r: 1, g: 1, b: 1, a: 1}
-  _inactiveColor: {r: 1, g: 1, b: 1, a: 0.5}
+  tank: {fileID: 7665522983562696216}
+  tankFrames:
+  - {fileID: 8715522055199388394, guid: a4eb54e42d042874eb3d0bdb543c665c, type: 3}
+  - {fileID: -880959875, guid: a4eb54e42d042874eb3d0bdb543c665c, type: 3}
+  - {fileID: 611521888, guid: a4eb54e42d042874eb3d0bdb543c665c, type: 3}
+  - {fileID: -1359411701, guid: a4eb54e42d042874eb3d0bdb543c665c, type: 3}
+  - {fileID: -262596068, guid: a4eb54e42d042874eb3d0bdb543c665c, type: 3}
+  - {fileID: -488659405, guid: a4eb54e42d042874eb3d0bdb543c665c, type: 3}
+  - {fileID: 1613054256, guid: a4eb54e42d042874eb3d0bdb543c665c, type: 3}
+  - {fileID: -1878933698, guid: a4eb54e42d042874eb3d0bdb543c665c, type: 3}
+  - {fileID: -439119175, guid: a4eb54e42d042874eb3d0bdb543c665c, type: 3}
+  - {fileID: 903395139, guid: a4eb54e42d042874eb3d0bdb543c665c, type: 3}
+  - {fileID: -1387529977, guid: a4eb54e42d042874eb3d0bdb543c665c, type: 3}
+  - {fileID: 932133222, guid: a4eb54e42d042874eb3d0bdb543c665c, type: 3}
+  - {fileID: -173423263, guid: a4eb54e42d042874eb3d0bdb543c665c, type: 3}
+  - {fileID: -880916488, guid: a4eb54e42d042874eb3d0bdb543c665c, type: 3}

@@ -4,8 +4,8 @@ using UnityEngine;
 public class Flamethrower : Weapon
 {
     [Header("UI Settings")]
-    [SerializeField] private CircularBarrelUI _uiPrefab;
-    private CircularBarrelUI _activeUI;
+    [SerializeField] private FlamethrowerUI _uiPrefab;
+    private FlamethrowerUI _activeUI;
     [SerializeField] private float _bulletSpreadAngle = 5f;
 
     [Header("Flamethrower Settings")]
@@ -15,9 +15,9 @@ public class Flamethrower : Weapon
     void Start()
     {
         shootCooldown = 0;
-        _currentAmmo = 8;
+        _currentAmmo = 28;
         _holdWeapon = true;
-        _maxAmmo = 8;
+        _maxAmmo = 28;
         InitializeUI();
     }
 
