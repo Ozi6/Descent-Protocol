@@ -999,8 +999,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229c40b6365fe20418f42bdd7a647431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkableTile: {fileID: 11400000, guid: 903d9061c31ea23409603ec7e75a6140, type: 2}
-  obstacleTile: {fileID: 11400000, guid: 46bdc5ad64338ea40b21700946e0f233, type: 2}
+  walkableTile: {fileID: 11400000, guid: 2a8e1fc2926804946ba99a71d50a4760, type: 2}
+  obstacleTile: {fileID: 11400000, guid: 31e30f673efd51e4d882496180c3d8f4, type: 2}
   width: 100
   height: 100
   generateOnStart: 1

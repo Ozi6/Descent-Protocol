@@ -6,8 +6,8 @@ using System.Collections.Generic;
 public class WorldGen : MonoBehaviour
 {
     [Header("Tile References")]
-    public Tile walkableTile;
-    public Tile obstacleTile;
+    public TileBase walkableTile;
+    public TileBase obstacleTile;
 
     [Header("Map Settings")]
     public int width = 100;
