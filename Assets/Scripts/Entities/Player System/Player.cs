@@ -92,6 +92,7 @@ public class Player : Entity
 
         _weaponHolder.AimAt(aimDirection);
         _weaponHolder.Fire(aimDirection);
+        _weaponHolder.StopFiring();
     }
 
     private Vector2 GetPrimaryDirection(Vector2 rawDirection)

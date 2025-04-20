@@ -15,7 +15,7 @@ public class WeaponHolder : MonoBehaviour
 
     public void StartFiring(Vector2 direction)
     {
-        if(_currentWeapon is Flamethrower)
+        if(_currentWeapon.getHoldWep())
         {
             _isFiringContinuously = true;
             _currentFireDirection = direction;
@@ -28,6 +28,7 @@ public class WeaponHolder : MonoBehaviour
     public void StopFiring()
     {
         _isFiringContinuously = false;
+        _currentWeapon.setIsFiring(false);
     }
 
     private IEnumerator ContinuousFireRoutine()

@@ -10,7 +10,6 @@ public class Flamethrower : Weapon
 
     [Header("Flamethrower Settings")]
     [SerializeField] private float _fireRate = 0.1f;
-    private bool _isFiring;
 
     void Start()
     {

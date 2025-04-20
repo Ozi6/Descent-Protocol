@@ -15,6 +15,7 @@ public abstract class Weapon : MonoBehaviour
     public float bulletSpeed = 10f;
     public const float shootCD = 0.5f;
     protected bool _holdWeapon = false;
+    protected bool _isFiring = false;
 
     public virtual void Fire(Vector2 direction)
     {
@@ -58,4 +59,10 @@ public abstract class Weapon : MonoBehaviour
 
     public void setHoldWep(bool value)
         { _holdWeapon = value; }
+
+    public bool isFiring()
+    { return _isFiring; }
+
+    public void setIsFiring(bool value)
+    { _isFiring = value; }
 }
